@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Donation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@200&family=Roboto&display=swap');
-        *{
+
+        * {
             margin: 0;
             padding: 0;
         }
-        nav{
+
+        nav {
             background-color: black;
             height: 45px;
             color: white;
@@ -19,14 +23,16 @@
             justify-content: center;
             align-items: center;
         }
-        nav > a{
+
+        nav>a {
             text-decoration: none;
             color: white;
             font-size: 2vw;
             padding-left: 20px;
             padding-right: 20px;
         }
-        body{
+
+        body {
             background-image: url('blood1.jpg');
             background-repeat: no-repeat;
             background-size: 100%;
@@ -34,14 +40,16 @@
             font-family: 'Inter', sans-serif;
             font-family: 'Roboto', sans-serif;
         }
-        main > h1{
+
+        main>h1 {
             padding: 3vw;
             font-size: 40px;
-            font-weight:700;
+            font-weight: 700;
             background-color: rgba(0, 255, 255, 0.521);
 
         }
-        .frm{
+
+        .frm {
             background-color: rgba(196, 37, 34, 0.959);
             margin-left: 10vw;
             margin-right: 10vw;
@@ -50,21 +58,44 @@
             padding: 20px;
             color: white;
         }
-        select{
-            margin-bottom: 15px;    
+
+        select {
+            margin-bottom: 15px;
             margin-left: 4vw;
+
         }
-        span{
+
+        span {
             margin-bottom: 15px;
         }
-        .btn-primary{
+
+        .btn-primary {
             margin-top: 10px;
         }
-        .selects{
-            line-height: 2.6em;
+
+        .selects {
+            display: inline-block;
+            line-height: 2.8em;
         }
+
+        .options {
+            display: inline-block;
+        }
+
+        .fillings {
+            display: inline;
+        }
+        footer{
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            color: black;
+            background-color: azure;
+        }
+
     </style>
 </head>
+
 <body>
     <header>
         <nav>
@@ -79,31 +110,59 @@
         </div>
         <div class="frm">
             <form>
-                  <legend>Find Blood Doners</legend>
-                  <div class="selects">
-                  <span for="">select blood group </span><br>
-                  <span>select your country</span><br>
-                  <span for="">select your state  </span>
-                </div>
-                <div class="options">
-                  <select class="form-select form-select-sm" aria-label=".form-select-sm example" style="width: 100px;display: inline;">
-                    <option selected>--select--</option>
-                    <option value="1">India</option>
-                    <option value="2">usa</option>
-                    <option value="3">canada</option>
-                  </select><br>
-                  <select class="form-select form-select-sm" aria-label=".form-select-sm example" style="width: 100px;display: inline;margin-left: 82px;">
-                    <option selected>--select--</option>
-                    <option value="1">snagrur</option>
-                    <option value="2">patiala</option>
-                  </select><br>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-              
+                <legend>Find Blood Doners</legend>
+                    <div class="selects">
+                        <span for="">select blood group </span><br>
+                        <span>select your country</span><br>
+                        <span for="">select your state </span>
+                    </div>
+                    <div class="options">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            style="width: 100px;display: inline;">
+                            <option selected>--select--</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="A1-">A1-</option>
+                            <option value="A1+">A1+</option>
+                            <option value="A1B+">A1B+</option>
+                            <option value="A1B-">A1B-</option>
+                            <option value="A2+">A2+</option>
+                            <option value="A2B+">A2B+</option>
+                            <option value="A2B-">A2B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="Bombay blood group">Bombay blood group</option>
+                            <option value="INRA">INRA</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select><br>
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            style="width: 100px;display: inline;">
+                            <option selected>--select--</option>
+                            <option value="1">India</option>
+                            <option value="2">usa</option>
+                            <option value="3">canada</option>
+                        </select><br>
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            style="width: 100px;display: inline;">
+                            <option selected>--select--</option>
+                            <option value="1">snagrur</option>
+                            <option value="2">patiala</option>
+                        </select><br>
+                    </div><br>
+                <button type="submit" class="btn btn-primary">search</button>
+            </form>
+
         </div>
     </main>
-    <footer></footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <footer>
+        Copyrights © 2005 - 2022, All Rights Reserved. Site Designed & Maintained By Friends2support.org
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
