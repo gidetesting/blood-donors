@@ -98,9 +98,22 @@
             background-color: rgba(128, 128, 128, 0.87);
             bottom: 0;
         }
-      
+        nav h3{
+            right: 0;
+            font-size: 1.95vw;
+            margin-top: 8px;
+            margin-left: 2vw;
+        }
+        nav #sign{
+            border-radius: 7px;
+            margin-bottom: 10px;
+            margin-left: 1.95vw;
+        }
         @media (max-width: 700px) {
             nav>a{
+                font-size: 4.6vw;
+            }
+            nav>h3{
                 font-size: 4.6vw;
             }
         }
@@ -119,7 +132,11 @@
         <nav>
             <a href="#">Home</a>
             <a href="#">Contact us</a>
-            <a id="sign" href="/signup" role="button" class="bnt btn-primary">SignUp</a>
+            {% if user.is_authenticated %}
+            <h3>Welcome {{user.username}}</h3>
+            {% else %}
+            <a id="sign" href="/signup" role="button" class="bnt btn-primary">Sign Up</a>
+            {% endif %}
         </nav>
     </header>
     {% for message in messages %}

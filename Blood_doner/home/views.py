@@ -14,13 +14,19 @@ def sign_user(request):
         password = request.POST.get('password')
         password_con = request.POST.get('password_con')
         user = User.objects.create_user(username=f_name,email=email,password=password)
-        if User.objects.filter(username=f_name).exists():
-            return redirect("/signup")
-            messages.error(request,"this username already exists!")
-        elif password != password_con:
-            messages.error(request,"Password does not match with each other")
-        else:
+        if password == password_con:
             messages.success(request,"signed up successfully")
             user.save()
             return redirect("/")
+        elif password != password_con:
+            messages.success(request,"please enter correct information")
+        # if User.objects.filter(username=f_name).exists():
+        #     return redirect("/signup")
+        #     messages.error(request,"this username already exists!")
+        # elif password != password_con:
+        #     messages.error(request,"Password does not match with each other")
+        # else:
+        #     messages.success(request,"signed up successfully")
+        #     user.save()
+        #     return redirect("/")
     return render(request,'signup.html')
