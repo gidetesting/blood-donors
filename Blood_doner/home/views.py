@@ -34,6 +34,8 @@ def sign_user(request):
             messages.error(request,"passwords do not match")
         else:
             user = User.objects.create_user(username=f_name,email=email,password=password)
+            user_log = authenticate(username=f_name,password=password)
+            login(request, user_log)
             messages.success(request,"signed up successfully")
             user.save()
             return redirect("/")
@@ -52,6 +54,19 @@ def login_user(request):
             messages.success(request,"you are logged in successfully")
             return redirect("/")
         elif user is None:
+            return redirect("/login")
             messages.error(request,"Please enter correct information")
-            return redirect("/")
     return render(request,'login.html')
+
+def search(request):
+    blood = request.GET['blood_group']
+    state = request.GET['state']
+    cty = request.GET['cty']
+    alldonerbloodgroup = Doner.objects.filter(blood_group__icontains=blood)
+    alldonerstate = Doner.objects.filter(state__icontains=state)
+    alldonercity = Doner.objects.filter(city__icontains=cty)
+    doner_blood_state = alldonerbloodgroup.union(alldonerstate)
+    doner_blood_city = alldonerbloodgroup.union(alldonercity)
+    total = doner_blood_state.union(alldonercity)
+    params = {'total':total}
+    return render(request,'search.html',params)
