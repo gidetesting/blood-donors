@@ -27,13 +27,12 @@ state_choices = (
 )
 
 
-
 class Doner(models.Model):
     user_name = models.CharField(max_length=100)
     contact_no = models.CharField(max_length=10)
     blood_group = models.CharField(choices=blood_choices,null=False,max_length=100)
     state = models.CharField(choices=state_choices,null=False,max_length=100)
-    city = models.CharField(max_length=50)
+    city = models.CharField(max_length=100)
     timestamp = models.DateField(default=now)
     def __str__(self):
         return self.user_name
