@@ -34,6 +34,7 @@ class Doner(models.Model):
     state = models.CharField(choices=state_choices,null=False,max_length=100)
     city = models.CharField(max_length=100)
     timestamp = models.DateField(default=now)
+    
     def __str__(self):
         return self.user_name
     
