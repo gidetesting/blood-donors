@@ -17,7 +17,7 @@ def index(request):
         if(phone is str):
             messages.error(request,"please enter a valid number")
         else:
-            dnr = Doner(user_name=name,contact_no=phone,blood_group=blood,state=state,city=city)
+            dnr = Doner(user_name=name,contact_no=phone,blood_group=blood,state=state,city=city,slug=name)
             messages.success(request,"Thanks for being a doner")
             dnr.save()
     all_doners = Doner.objects.all()
@@ -70,3 +70,8 @@ def search(request):
     total = doner_blood_state.union(alldonercity)
     params = {'total':total}
     return render(request,'search.html',params)
+
+def delete_post(request,slug):
+    doner = Doner.objects.get(slug=slug)
+    doner.delete()
+    return redirect("/")

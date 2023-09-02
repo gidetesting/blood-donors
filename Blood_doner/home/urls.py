@@ -7,6 +7,6 @@ urlpatterns = [
     path("signup",views.sign_user,name="signup"),
     path("login",views.login_user,name="login"),
     path("search",views.search,name="search"),
-    path("contact",views.contact,name="contact")
-    
+    path("contact",views.contact,name="contact"),
+    path('delete/<str:slug>',views.delete_post,name='delpost')
 ]
