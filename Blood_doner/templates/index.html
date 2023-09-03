@@ -163,6 +163,9 @@
         .don_form form select {
             border-radius: 8px;
         }
+        #name{
+            cursor: not-allowed;
+        }
 
         #disb {
             display: none;
@@ -170,6 +173,9 @@
         #delbtn{
             display: inline;
             float: right;
+        }
+        h5{
+            display: inline;
         }
         @media (max-width: 1350px) {
             nav>a {
@@ -287,7 +293,7 @@
                 <div class="options">
                     <select class="form-select form-select-sm" name="blood_group" aria-label=".form-select-sm example"
                         style="width: 100px;display: inline;" required>
-                        <option selected>--select--</option>
+                        <option >--select--</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
                         <option value="A1-">A1-</option>
@@ -311,8 +317,8 @@
                         <option selected>India</option>
                     </select><br>
                     <select class="form-select form-select-sm" name="state" aria-label=".form-select-sm example"
-                        style="width: 100px;display: inline;">
-                        <option selected>All</option>
+                        style="width: 100px;display: inline;" required>
+                        <option >All</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -350,8 +356,8 @@
                         <option value="Uttarakhand">Uttarakhand</option>
                         <option value="West Bengal">West Bengal</option>
                     </select><br>
-                    <select class="cty form-select form-select-sm" name="cty" style="width: 100px;display: inline;">
-                        <option value="All" selected>All</option>
+                    <select class="cty form-select form-select-sm" name="cty" style="width: 100px;display: inline;" required>
+                        <option value="All" >All</option>
                         <option value="Adilabad">Adilabad</option>
                         <option value="Agra">Agra</option>
                         <option value="Ahmedabad">Ahmedabad</option>
@@ -1010,12 +1016,12 @@
                     </div>
                     <div class="form-floating">
                         <input type="tel" class="form-control" name="phone" id="phone" required>
-                        <label for="phone">Contact no</label>
+                        <label for="phone">Contact no(without county code)</label>
                     </div>
                     <div class="form-floating">
                         <select name="blood" class="form-select form-select-sm bld" aria-label=".form-select-sm example"
                             style="width: 200px;display: inline;" required>
-                            <option selected>select blood group </option>
+                            <option >select blood group </option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
                             <option value="A1-">A1-</option>
@@ -1036,7 +1042,7 @@
                         </select><br>
                         <select name="state" class="form-select form-select-sm state"
                             aria-label=".form-select-sm example" style="width: 200px;display: inline;" required>
-                            <option selected>Your State</option>
+                            <option >Your State</option>
                             <option value="Andhra Pradesh">Andhra Pradesh</option>
                             <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                             <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -1075,11 +1081,9 @@
                             <option value="West Bengal">West Bengal</option>
                         </select><br>
                         <div class="form-floating ">
-                            <!-- <input type="text" class="form-control citi" name="city" id="city" required>
-                            <label for="city"> Enter your City name</label> -->
                             <select name="city" class="form-select form-select-sm citi "
                                 aria-label=".form-select-sm example" style="width: 200px;display: inline;" required>
-                                <option selected>Your City</option>
+                                <option >Your City</option>
                                 <option value="Adilabad">Adilabad</option>
                                 <option value="Agra">Agra</option>
                                 <option value="Ahmedabad">Ahmedabad</option>
@@ -1738,7 +1742,7 @@
             <div class="card my-3">
                 <div class="card-header my-2">
                     <h5> By <i>{{doner.user_name}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<sup>{{doner.timestamp}}</sup></h5>
-                    {% if user.username == doner.slug %}
+                    {% if user.username == doner.slug or user.is_superuser %} 
                     <a class="btn btn-danger" id="delbtn" href="/delete/{{doner.slug}}">Delete</a> 
                     {% endif %}
                 </div>
@@ -1747,7 +1751,7 @@
                     <li class="list-group-item">Contact number&nbsp;&nbsp; :&nbsp;&nbsp;
                         <b>+91&nbsp;{{doner.contact_no}}</b>
                     </li>
-                    <li class="list-group-item">BLood group&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.blood_group}}</b></li>
+                    <li class="list-group-item">Blood group&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.blood_group}}</b></li>
                     <li class="list-group-item">State&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.state}}</b></li>
                     <li class="list-group-item">City&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.city}}</b></li>
                 </ul>

@@ -62,12 +62,10 @@ def search(request):
     blood = request.GET['blood_group']
     state = request.GET['state']
     cty = request.GET['cty']
-    alldonerbloodgroup = Doner.objects.filter(blood_group__icontains=blood)
-    alldonerstate = Doner.objects.filter(state__icontains=state)
-    alldonercity = Doner.objects.filter(city__icontains=cty)
-    doner_blood_state = alldonerbloodgroup.union(alldonerstate)
-    doner_blood_city = alldonerbloodgroup.union(alldonercity)
-    total = doner_blood_state.union(alldonercity)
+    alldonerbloodgroup = Doner.objects.filter(blood_group__exact=blood)
+    alldonerstate = Doner.objects.filter(state__exact=state)
+    alldonercity = Doner.objects.filter(city__exact=cty)
+    total = alldonercity.union(alldonerbloodgroup,alldonerstate)
     params = {'total':total}
     return render(request,'search.html',params)
 
