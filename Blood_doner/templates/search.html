@@ -10,8 +10,14 @@
 
     <title>search results</title>
     <style>
+        *{
+            overflow-x: hidden;
+        }
         body{
             background-color: rgba(255, 0, 89, 0.603);
+        }
+        h2{
+            overflow-y: hidden;
         }
         nav {
             background-color: black;
@@ -42,6 +48,9 @@
             margin-bottom: 10px;
             margin-left: 1.95vw;
         }
+        #uper_context td{
+            font-weight: 650;
+        }
         @media (max-width: 1350px) {
             nav>a {
                 font-size: 2.7vw;
@@ -70,24 +79,28 @@
             nav>a{
                 font-size: 5vw;
             }
-
         }
+        @media (max-width: 390px) {
+            td{
+                font-size: 12px;
+            }
+        }
+        @media (max-width: 333px) { 
+            td{
+                font-size: 10px;
+            }
+        }
+
     </style>
   </head>
   <body>
     <nav>
         <a href="/">Home</a>
         <a href="/contact">Contact us</a>
-        {% if user.is_authenticated %}
-        <h3>Welcome {{user.username}}</h3>
-        {% else %}
-        <a id="sign" href="/signup" role="button" class="bnt btn-primary">Sign Up</a>
-        <a id="sign" href="/login" role="button" class="bnt btn-primary">log in</a>
-        {% endif %}
     </nav>
     <div class="container my-5">
     <h2>Your serach results are:</h2>
-    {% for doner in total %}
+    {% comment %} {% for doner in donors %}
     <div class="card my-3" >
         <div class="card-header my-2">
            <h5> By <i>{{doner.user_name}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<sup>{{doner.timestamp}}</sup></h5>
@@ -100,8 +113,29 @@
           <li class="list-group-item">City&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.city}}</b></li>
         </ul>
       </div>
-      {% endfor %}
-    </div>
+      {% endfor %}    {% endcomment %}
+      <table  class="table table-danger">
+          <tbody>
+              <tr id="uper_context">
+                  <td>Name</td>
+                  <td>blood grp.</td>
+                  <td>Contact number</td>
+                  <td>State</td>
+                  <td>City</td>
+                </tr>
+            </tbody>
+            <tbody class="table table-success">
+        {% for doner in donors %}
+          <tr class="donor_info">
+            <td>{{doner.user_name}}</td>
+            <td>{{doner.blood_group}}</td>
+            <td>{{doner.contact_no}}</td>
+            <td>{{doner.state}}</td>
+            <td>{{doner.city}}</td>
+          </tr>
+          {% endfor %}  
+        </tbody>
+      </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

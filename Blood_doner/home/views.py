@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from home.models import Doner
+from django.db.models import Q
 import math
 
 
@@ -62,11 +63,16 @@ def search(request):
     blood = request.GET['blood_group']
     state = request.GET['state']
     cty = request.GET['cty']
-    alldonerbloodgroup = Doner.objects.filter(blood_group__exact=blood)
-    alldonerstate = Doner.objects.filter(state__exact=state)
-    alldonercity = Doner.objects.filter(city__exact=cty)
-    total = alldonercity.union(alldonerbloodgroup,alldonerstate)
-    params = {'total':total}
+    if(state == "All"):
+        print("rhsi is stat")
+        donaters = Doner.objects.filter(Q(blood_group__exact=blood))
+    elif(cty == "All"):
+        print("rhsi is cty")
+        donaters = Doner.objects.filter(Q(blood_group__exact=blood) & Q(state__exact=state))
+    else:   
+        print("rhsi is cpmsodm")
+        donaters = Doner.objects.filter(Q(blood_group__exact=blood) & Q(state__exact=state) & Q(city__exact=cty))
+    params = {'donors':donaters}
     return render(request,'search.html',params)
 
 def delete_post(request,slug):
