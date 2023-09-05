@@ -67,10 +67,8 @@ def search(request):
         print("rhsi is stat")
         donaters = Doner.objects.filter(Q(blood_group__exact=blood))
     elif(cty == "All"):
-        print("rhsi is cty")
         donaters = Doner.objects.filter(Q(blood_group__exact=blood) & Q(state__exact=state))
     else:   
-        print("rhsi is cpmsodm")
         donaters = Doner.objects.filter(Q(blood_group__exact=blood) & Q(state__exact=state) & Q(city__exact=cty))
     params = {'donors':donaters}
     return render(request,'search.html',params)
@@ -79,3 +77,7 @@ def delete_post(request,slug):
     doner = Doner.objects.get(slug=slug)
     doner.delete()
     return redirect("/")
+
+def donor_posted(request, username):
+    user = User.objects.get(username=username)
+    has_posted = BlogPost.objects.filter(author=user).exists()

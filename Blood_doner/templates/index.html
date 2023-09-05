@@ -39,7 +39,7 @@
         body {
             background: url("{% static '/bg.jpg' %}");
             background-size: cover;
-            background-repeat: no-repeat;
+            background-repeat: repeat-y;
             font-family: 'EB Garamond', serif;
             font-family: 'Inter', sans-serif;
             font-family: 'Roboto', sans-serif;
@@ -1725,7 +1725,7 @@
                             </select>
                             </select>
                         </div>
-                        <button class="btn btn-primary" id="submit_btn" type="submit">Submit</button>
+                        <button class="btn btn-primary" id="submit_btn" type="submit" onclick="hide()">Submit</button>
                     </div>
                 </form>
             </div>
@@ -1763,17 +1763,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrit
         y="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
-        let btn = document.getElementById("continue")
-        let form_content = document.getElementById("disb")
-        btn.addEventListener("click", () => {
+        let btn = document.getElementById("continue");
+        let form_content = document.getElementById("disb");
+        // var name_of_user = document.getElementById("name").value;
+        // var submit_btn = document.getElementById("submit_btn");
+        var don_form = document.querySelector(".don_form");
+        // var phone = document.getElementById("phone").value;
+        var del_btn = document.getElementById("delbtn")
+        // done the continue button
+        btn.addEventListener("click",()=>{
             form_content.style.display = "block";
             btn.style.display = "none";
         })
-        let blood = document.getElementById("blod")
-        var search_btn = document.getElementById("search_btn")
-        var value = blood.value;
-        if(value == "non"){
-            console.log("scmodm")
+        del_btn.addEventListener("click",()=>{
+            console.log("deleteddd")
+            localStorage.clear()
+        })
+        // getting rid of that onatiner once user is a donor
+        function hide(){
+            localStorage.setItem("username","confirm_donor");
+        }
+        var got = localStorage.getItem("username");
+        if(got == "confirm_donor"){
+            don_form.style.display = "none";
+        }
+        else{
+            console.log("got intto else")
         }
     </script>
 </body>
