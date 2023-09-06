@@ -1735,7 +1735,8 @@
             {% endif %}
         </div>
         <hr>
-        <div class="container list my-4">
+        {% if user.is_authenticated %}
+        <div class="container hide_donors list my-4">
             <h2 class="my-4">Chcek Out Blood Doners</h2>
             {% for doner in doners %}
             <div class="card my-3">
@@ -1756,6 +1757,7 @@
                 </ul>
             </div>
             {% endfor %}
+            {% endif %}
     </main>
     <footer>
         Copyrights © 2023, All Rights Reserved. Site Designed & Maintained.
@@ -1769,15 +1771,12 @@
         // var submit_btn = document.getElementById("submit_btn");
         var don_form = document.querySelector(".don_form");
         // var phone = document.getElementById("phone").value;
-        var del_btn = document.getElementById("delbtn")
+        var del_btn = document.getElementById("delbtn");
+        var hide_donors = document.querySelector(".hide_donors");
         // done the continue button
         btn.addEventListener("click",()=>{
             form_content.style.display = "block";
             btn.style.display = "none";
-        })
-        del_btn.addEventListener("click",()=>{
-            console.log("deleteddd")
-            localStorage.clear()
         })
         // getting rid of that onatiner once user is a donor
         function hide(){
@@ -1786,10 +1785,15 @@
         var got = localStorage.getItem("username");
         if(got == "confirm_donor"){
             don_form.style.display = "none";
+            console.log("all the posts should seeb")
         }
         else{
-            console.log("got intto else")
+            hide_donors.style.display = "none";
+            console.log("all the posts should be hide nwo")
         }
+        del_btn.addEventListener("click",()=>{
+            localStorage.removeItem("username")
+        })
     </script>
 </body>
 

@@ -21,6 +21,7 @@ def index(request):
             dnr = Doner(user_name=name,contact_no=phone,blood_group=blood,state=state,city=city,slug=name)
             messages.success(request,"Thanks for being a doner")
             dnr.save()
+            return redirect("/")
     all_doners = Doner.objects.all()
     context = {'doners':all_doners}
     return render(request,'index.html',context)
