@@ -19,15 +19,15 @@ def index(request):
             messages.error(request,"please enter a valid number")
         else:
             dnr = Doner(user_name=name,contact_no=phone,blood_group=blood,state=state,city=city,slug=name)
-            messages.success(request,"Thanks for being a doner")
+            messages.success(request,"Thanks for being a donor")
             dnr.save()
             return redirect("/")
     all_doners = Doner.objects.all()
     context = {'doners':all_doners}
     return render(request,'index.html',context)
 
-def del_conf(request):
-    all_doners = Doner.objects.all()
+def del_conf(request,slug):
+    all_doners = Doner.objects.filter(slug=slug)
     context = {'mes':all_doners}
     return render(request,'del_conf.html',context)
 
@@ -87,3 +87,6 @@ def delete_post(request,slug):
 def donor_posted(request, username):
     user = User.objects.get(username=username)
     has_posted = BlogPost.objects.filter(author=user).exists()
+    
+def test1(request):
+    return render(request,'test1.html')

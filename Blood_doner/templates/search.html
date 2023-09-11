@@ -4,8 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
+    {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>search results</title>
@@ -15,6 +14,7 @@
         }
         body{
             background-color: rgba(255, 0, 89, 0.603);
+            background: url("{% static '/bg.jpg' %}");
         }
         h2{
             overflow-y: hidden;
@@ -48,6 +48,15 @@
             margin-bottom: 10px;
             margin-left: 1.95vw;
         }
+        nav>a:hover{
+            color: blueviolet;
+        }
+        nav>h3:hover{
+            color: blueviolet;
+        }
+        #res{
+            color: white;
+        }
         #uper_context td{
             font-weight: 650;
         }
@@ -73,7 +82,10 @@
                 padding-left: 2vw;
                 padding-right: 2vw;
             }
-            
+            .nav_icon{
+                width: 22px;
+                height: 22px;
+            }
         }
         @media (max-width: 400px) {
             nav>a{
@@ -95,26 +107,25 @@
   </head>
   <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/contact">Contact us</a>
+        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-door-fill nav_icon" viewBox="0 0 16 16">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+          </svg>&nbsp;Home</a>&nbsp;
+        <a href="/contact"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telephone-fill nav_icon" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+          </svg>&nbsp;Contact us</a>
+        {% if user.is_authenticated %}
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle nav_icon" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>&nbsp;{{user.username}}</h3>
+        {% else %}
+        <a id="sign" href="/signup" role="button" class="bnt btn-primary">Sign Up</a>
+        <a id="sign" href="/login" role="button" class="bnt btn-primary">log in</a>
+        {% endif %}
     </nav>
     <div class="container my-5">
-    <h2>Your serach results are:</h2>
-    {% comment %} {% for doner in donors %}
-    <div class="card my-3" >
-        <div class="card-header my-2">
-           <h5> By <i>{{doner.user_name}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<sup>{{doner.timestamp}}</sup></h5>
-          </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Person name &nbsp;&nbsp;:&nbsp;&nbsp; <b>{{doner.user_name}}</b></li>
-          <li class="list-group-item">Contact number&nbsp;&nbsp; :&nbsp;&nbsp; <b>+91&nbsp;{{doner.contact_no}}</b></li>
-          <li class="list-group-item">BLood group&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.blood_group}}</b></li>
-          <li class="list-group-item">State&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.state}}</b></li>
-          <li class="list-group-item">City&nbsp;&nbsp; :&nbsp;&nbsp; <b>{{doner.city}}</b></li>
-        </ul>
-      </div>
-      {% endfor %}    {% endcomment %}
-      <table  class="table table-danger">
+    <h2 id="res">Your serach results are:</h2>
+      <table  class="table table-light">
           <tbody>
               <tr id="uper_context">
                   <td>Name</td>
@@ -129,7 +140,7 @@
           <tr class="donor_info">
             <td>{{doner.user_name}}</td>
             <td>{{doner.blood_group}}</td>
-            <td>{{doner.contact_no}}</td>
+            <td>+91&nbsp;{{doner.contact_no}}</td>
             <td>{{doner.state}}</td>
             <td>{{doner.city}}</td>
           </tr>
