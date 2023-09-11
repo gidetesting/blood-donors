@@ -26,6 +26,11 @@ def index(request):
     context = {'doners':all_doners}
     return render(request,'index.html',context)
 
+def del_conf(request):
+    all_doners = Doner.objects.all()
+    context = {'mes':all_doners}
+    return render(request,'del_conf.html',context)
+
 def sign_user(request):
     if request.method == "POST":
         f_name = request.POST.get('fname')

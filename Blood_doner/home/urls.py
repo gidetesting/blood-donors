@@ -9,5 +9,6 @@ urlpatterns = [
     path("search",views.search,name="search"),
     path("contact",views.contact,name="contact"),
     path('delete/<str:slug>',views.delete_post,name='delpost'),
+    path('del_conf',views.del_conf,name="conformation"),
     path('donor_posted/<str:username>/', views.donor_posted, name='donor_has_posted'),
 ]

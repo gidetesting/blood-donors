@@ -57,13 +57,12 @@
         }
 
         .frm {
-            background-color: rgba(196, 37, 34, 0.959);
+            background-color: rgba(196, 37, 34, 0.973);
             margin-left: 8vw;
             margin-right: 8vw;
             border-radius: 13px;
             margin-top: 4vw;
             padding: 20px;
-            color: white;
         }
 
         select {
@@ -72,7 +71,14 @@
         }
 
         span {
+            color: black;
             margin-bottom: 15px;
+            font-weight: 300;
+            font-size: x-large;
+        }
+        legend{
+            color: black;
+            font-size: xx-large;
         }
 
         .btn-primary {
@@ -124,6 +130,7 @@
 
         .don_form>h2 {
             color: white;
+            font-weight: 700;
         }
 
         .don_form>a {
@@ -131,7 +138,7 @@
         }
 
         .don_form {
-            border: 1px solid white;
+            border: 2px solid white;
             border-radius: 20px;
             padding: 2vw;
         }
@@ -151,6 +158,10 @@
         .don_form .citi {
             margin-left: 0;
             margin-bottom: 0vw;
+        }
+        .hide_donors h2{
+            font-size: 3vw;
+            font-weight: 800;
         }
 
         card {
@@ -1743,7 +1754,7 @@
                 <div class="card-header my-2">
                     <h5> By <i>{{doner.user_name}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<sup>{{doner.timestamp}}</sup></h5>
                     {% if user.username == doner.slug or user.is_superuser %} 
-                    <a class="btn btn-danger" id="delbtn" href="/delete/{{doner.slug}}">Delete</a> 
+                    <a class="btn btn-danger" id="delbtn" href="del_conf">Delete</a> 
                     {% endif %}
                 </div>
                 <ul class="list-group list-group-flush">
@@ -1794,6 +1805,7 @@
         del_btn.addEventListener("click",()=>{
             localStorage.removeItem("username")
         })
+
     </script>
 </body>
 
