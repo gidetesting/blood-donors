@@ -5,16 +5,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% load static %}
     <title>Delete confirmation</title>
+    <style>
+      body{
+        background: url("{% static '/bg.jpg' %}");
+      }
+      .ctr{
+        display: flex;
+        justify-content: center;
+      }
+      h3{
+        color:  white;
+      }
+    </style>
   </head>
   <body>
-      <div class="container my-5">
-          <h3><b>{{user.username}}</b> are you sure to Delete you post</h3>
+      <div class="container ctr my-5">
+          <h3><b>{{user.username}}</b> are you sure to Delete you post ? </h3><br>
+        </div>
+        <div class="ctr">
           {% for me in mes %}
-          <a href="/delete/{{me.slug}}" id="del" class="btn btn-danger">Yes</a>
+          <a href="/delete/{{me.slug}}" id="del" class="btn btn-danger">Yes</a>&nbsp;&nbsp;
           {% endfor %}
           <a href="/" id="back"><button class="btn btn-primary">No</button></a>
-    </div>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
       var del_btn = document.getElementById("del");

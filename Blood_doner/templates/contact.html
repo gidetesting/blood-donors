@@ -1,33 +1,47 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Contact page</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Me</title>
     <style>
-        *{
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ECEFF1; /* Light grayish-blue background color */
             margin: 0;
             padding: 0;
-            font-family: 'EB Garamond', serif;
-            font-family: 'Inter', sans-serif;
-            font-family: 'Roboto', sans-serif;
         }
-        .container{
-            justify-self: center;
-            align-items: center;
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .contact-info {
+          width: 70vw;
+          height: 35vh;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        h3{
+          line-height: 2.5rem;
+        }
+        @media (max-width: 700px){
+          h3{
+            font-size: 7vw;
+          }
         }
     </style>
-  </head>
-  <body>
-    <div class="container my-5">
-        <h4>Have a general query contact us at  +91 94175 0082</h4>
-  </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+</head>
+<body>
+    <h1>Contact Information</h1>
+    <div class="contact-info">
+      <h3><b>Name :</b> Your Name</h3>
+      <h3><b>Email :</b> Your Email</h3>
+      <h3><b>Phone :</b> +91 94175 0082</h3>
+      <h3><b>Address :</b> Your Address</h3>
+    </div>
+</body>
 </html>

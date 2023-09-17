@@ -82,11 +82,10 @@ def search(request):
 def delete_post(request,slug):
     doner = Doner.objects.get(slug=slug)
     doner.delete()
+    messages.success(request,'You are not a donor anymore')
     return redirect("/")
 
 def donor_posted(request, username):
     user = User.objects.get(username=username)
     has_posted = BlogPost.objects.filter(author=user).exists()
     
-def test1(request):
-    return render(request,'test1.html')
